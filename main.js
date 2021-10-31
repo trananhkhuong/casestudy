@@ -6,10 +6,10 @@ let scoreShow = document.getElementById('score');
     let tobeOn = new Image();
     let tobeBelow = new Image();
 
-    birdImg.src = "zyro2.png"
-    background.src = "ra1.png";
-    tobeOn.src = "tuveOn.png";
-    tobeBelow.src = "tubeBelow.png";
+    birdImg.src = "img/zyro2.png"
+    background.src = "img/ra1.png";
+    tobeOn.src = "img/tuveOn.png";
+    tobeBelow.src = "img/tubeBelow.png";
     let score = 0;
     let distanceOf2Tubes = 200;
     let distanceToTheLowerTube;

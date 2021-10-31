@@ -10,6 +10,7 @@ let scoreShow = document.getElementById('score');
     background.src = "img/ra1.png";
     tobeOn.src = "img/tuveOn.png";
     tobeBelow.src = "img/tubeBelow.png";
+
     let score = 0;
     let distanceOf2Tubes = 200;
     let distanceToTheLowerTube;
@@ -17,38 +18,40 @@ let scoreShow = document.getElementById('score');
         x: background.width / 5,
         y: background.height / 2
     }
-    let ong = [];
-    ong[0] = {
+
+    let sword = [];
+    sword[0] = {
         x: canvas.width,
         y: 0
     }
+
     function run() {
         // load hình ảnh vào
         context.drawImage(background, 0, 0);
         context.drawImage(birdImg, bird.x, bird.y);
 
-        for (let  i = 0; i < ong.length; i++) {
+        for (let  i = 0; i < sword.length; i++) {
             distanceToTheLowerTube = tobeOn.height + distanceOf2Tubes;
-            context.drawImage(tobeOn, ong[i].x, ong[i].y);
-            context.drawImage(tobeBelow, ong[i].x, ong[i].y + distanceToTheLowerTube);
-            ong[i].x -= 5;//để ống di chuyển
+            context.drawImage(tobeOn, sword[i].x, sword[i].y);
+            context.drawImage(tobeBelow, sword[i].x, sword[i].y + distanceToTheLowerTube);
+            sword[i].x -= 5;//để ống di chuyển
 
-            if (ong[i].x == canvas.width / 2) {
-                ong.push({
+            if (sword[i].x === canvas.width / 2) {
+                sword.push({
                     x: canvas.width,
                     y: Math.floor(Math.random() * tobeOn.height) - tobeOn.height
                 })
             }
-            if (ong[i].x == 0) ong.splice(0, 0);
+            if (sword[i].x === 0) sword.splice(0, 0);
 
-            if (ong[i].x == bird.x) {
+            if (sword[i].x === bird.x) {
 
             score++;}
 
-            if (bird.y + birdImg.height == canvas.height ||
-                bird.x + birdImg.width >= ong[i].x && bird.x <= ong[i].x + tobeOn.width
-                && (bird.y <= ong[i].y + tobeOn.height ||
-                    bird.y + birdImg.height >= ong[i].y + distanceToTheLowerTube)
+            if (bird.y + birdImg.height === canvas.height ||
+                bird.x + birdImg.width >= sword[i].x && bird.x <= sword[i].x + tobeOn.width
+                && (bird.y <= sword[i].y + tobeOn.height ||
+                    bird.y + birdImg.height >= sword[i].y + distanceToTheLowerTube)
             ) {
                 check()
             return
@@ -64,18 +67,16 @@ let scoreShow = document.getElementById('score');
 
         bird.y -= 80;
     })
-let value= document.getElementById('start').value;
-    value=document.getElementById('input').innerHTML
+let value = document.getElementById('start').value;
+    value = document.getElementById('input').innerHTML;
 
-function check(){
-    let a = alert('Điểm của bạn là : '+score+ " điểm ")
-    if (a == true){
+
+    function check(){
+    let a = document.write(score)
+    if (a === true){
         location.reload()
 
     }else {
        document.getElementById('reset').innerHTML ="<button type='button' id='reset' onclick='reset()'>reset</button>"
     }
-}
-function reset(){
-    location.reload()
 }

@@ -17,7 +17,7 @@ let scoreShow = document.getElementById('score');
     let bird = {
         x: background.width / 5,
         y: background.height / 2
-    }
+    };
 
     let sword = [];
     sword[0] = {
@@ -26,7 +26,7 @@ let scoreShow = document.getElementById('score');
     }
 
     function run() {
-        // load hình ảnh vào
+
         context.drawImage(background, 0, 0);
         context.drawImage(birdImg, bird.x, bird.y);
 
@@ -34,7 +34,7 @@ let scoreShow = document.getElementById('score');
             distanceToTheLowerTube = tobeOn.height + distanceOf2Tubes;
             context.drawImage(tobeOn, sword[i].x, sword[i].y);
             context.drawImage(tobeBelow, sword[i].x, sword[i].y + distanceToTheLowerTube);
-            sword[i].x -= 5;//để ống di chuyển
+            sword[i].x -= 5;
 
             if (sword[i].x === canvas.width / 2) {
                 sword.push({
@@ -42,6 +42,7 @@ let scoreShow = document.getElementById('score');
                     y: Math.floor(Math.random() * tobeOn.height) - tobeOn.height
                 })
             }
+
             if (sword[i].x === 0) sword.splice(0, 0);
 
             if (sword[i].x === bird.x) {
@@ -57,14 +58,13 @@ let scoreShow = document.getElementById('score');
             return
             }
         }
+       
         scoreShow.innerHTML = "score: " + score;
-
         bird.y += 3;
         requestAnimationFrame(run)
     }
 
     document.addEventListener("mousedown",function () {
-
         bird.y -= 80;
     })
 let value = document.getElementById('start').value;
@@ -72,11 +72,13 @@ let value = document.getElementById('start').value;
 
 
     function check(){
-    let a = document.write(score)
+    let a = alert(score)
     if (a === true){
         location.reload()
 
     }else {
        document.getElementById('reset').innerHTML ="<button type='button' id='reset' onclick='reset()'>reset</button>"
     }
+}   function reset() {
+        location.reload()
 }
